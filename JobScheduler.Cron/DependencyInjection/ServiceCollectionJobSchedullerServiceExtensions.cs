@@ -15,7 +15,7 @@ public static class ServiceCollectionJobSchedulerServiceExtensions
     /// Adds the job scheduler services, including the hosted service, to the specified 
     /// <see cref="IServiceCollection"/>. This includes the <see cref="TimeProvider"/>, 
     /// <see cref="IJobExecutor"/>, and <see cref="Microsoft.Extensions.Hosting.IHostedService"/> 
-    /// (implemented by <see cref="JobExecuterBackgroundService"/>) for executing scheduled jobs. 
+    /// (implemented by <see cref="JobExecutorBackgroundService"/>) for executing scheduled jobs. 
     /// The method can be called multiple times to register different job configurations. 
     /// Note that the application will follow the patterns of <see cref="IHostedService"/>, and the 
     /// <see cref="CancellationToken"/> provided by the hosted service will be propagated to the jobs. 
@@ -30,7 +30,7 @@ public static class ServiceCollectionJobSchedulerServiceExtensions
     public static IServiceCollection AddHostedJobScheduler<TJob>(this IServiceCollection services,
         JobConfiguration jobConfiguration) where TJob : class, IJob => services
             .AddJobScheduler<TJob>(jobConfiguration)
-            .AddHostedService<JobExecuterBackgroundService>();
+            .AddHostedService<JobExecutorBackgroundService>();
 
     /// <summary>
     /// Adds the job scheduler services, excluding the hosted service, to the specified 

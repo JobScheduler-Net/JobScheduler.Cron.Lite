@@ -41,7 +41,7 @@ services.AddHostedJobScheduler<Job>(new JobConfiguration
 ### Only Job Scheduler
 
 Registers the necessary services for job scheduling but does not include the background service 
-that executes the jobs. It is the responsibility of the user to call IJobExecuter.Execute to trigger the 
+that executes the jobs. It is the responsibility of the user to call IJobExecutor.Execute to trigger the 
 job execution according to the configured schedule.
 
 ```csharp

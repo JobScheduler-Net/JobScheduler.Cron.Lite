@@ -3,11 +3,11 @@ using Microsoft.Extensions.Hosting;
 
 namespace JobScheduler.Cron.Hosting;
 
-internal class JobExecuterBackgroundService : BackgroundService
+internal class JobExecutorBackgroundService : BackgroundService
 {
     private readonly IJobExecutor jobExecuter;
 
-    public JobExecuterBackgroundService(IJobExecutor jobExecuter) => this.jobExecuter = jobExecuter;
+    public JobExecutorBackgroundService(IJobExecutor jobExecuter) => this.jobExecuter = jobExecuter;
 
     protected override Task ExecuteAsync(CancellationToken stoppingToken) => jobExecuter.Execute(stoppingToken);
 }
