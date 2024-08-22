@@ -5,9 +5,9 @@ namespace JobScheduler.Cron.Hosting;
 
 internal class JobExecutorBackgroundService : BackgroundService
 {
-    private readonly IJobExecutor jobExecuter;
+    private readonly IJobExecutor jobExecutor;
 
-    public JobExecutorBackgroundService(IJobExecutor jobExecuter) => this.jobExecuter = jobExecuter;
+    public JobExecutorBackgroundService(IJobExecutor jobExecutor) => this.jobExecutor = jobExecutor;
 
-    protected override Task ExecuteAsync(CancellationToken stoppingToken) => jobExecuter.Execute(stoppingToken);
+    protected override Task ExecuteAsync(CancellationToken stoppingToken) => jobExecutor.Execute(stoppingToken);
 }
