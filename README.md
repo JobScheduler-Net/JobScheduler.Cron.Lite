@@ -32,13 +32,9 @@ and also adds a hosted service to manage job execution.
 using JobScheduler.Cron;
 
 // Configure job scheduler services with hosted service
-services.AddHostedJobScheduler(new JobConfiguration
+services.AddHostedJobScheduler<Job>(new JobConfiguration
 {
-    Cron = "0 0 * * *", // Example cron expression
-    OnExecute = async (serviceProvider, cancellationToken) =>
-    {
-        // Job execution logic
-    }
+    Cron = "0 0 * * *",
 });
 ```
 
@@ -52,13 +48,9 @@ job execution according to the configured schedule.
 using JobScheduler.Cron;
 
 // Configure job scheduler services
-services.AddJobScheduler(new JobConfiguration
+services.AddJobScheduler<Job>(new JobConfiguration
 {
-    Cron = "0 0 * * *", // Example cron expression
-    OnExecute = async (serviceProvider, cancellationToken) =>
-    {
-        // Job execution logic
-    }
+    Cron = "0 0 * * *",
 });
 ```
 
