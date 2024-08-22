@@ -1,6 +1,6 @@
 ﻿using JobScheduler.Cron.Configurations;
 using JobScheduler.Cron.Hosting;
-using JobScheduler.Cron.JobExecuter;
+using JobScheduler.Cron.JobExecutor;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
@@ -12,28 +12,9 @@ namespace JobScheduler.Cron.DependencyInjection;
 public static class ServiceCollectionJobSchedulerServiceExtensions
 {
     /// <summary>
-    /// Adds the job scheduler services, excluding the hosted service, to the specified 
-    /// <see cref="IServiceCollection"/>. This includes the <see cref="TimeProvider"/> and 
-    /// <see cref="IJobExecuter"/>. The method can be called multiple times to register different 
-    /// job configurations. Note that the job executor does not handle exceptions; it is the 
-    /// responsibility of the caller to ensure that the job configuration is valid and that any 
-    /// necessary error handling is implemented within the job itself.
-    /// </summary>
-    /// <param name="services">The <see cref="IServiceCollection"/> to add the services to.</param>
-    /// <param name="jobConfiguration">The configuration for the scheduled job.</param>
-    /// <returns>The original <see cref="IServiceCollection"/> with the job scheduler services added.</returns>
-    public static IServiceCollection AddJobScheduler(this IServiceCollection services,
-        JobConfiguration jobConfiguration)
-    {
-        services.TryAddSingleton(TimeProvider.System);
-        services.TryAddSingleton<IJobExecuter, JobExecuter.JobExecuter>();
-        return services.AddSingleton(jobConfiguration);
-    }
-
-    /// <summary>
     /// Adds the job scheduler services, including the hosted service, to the specified 
     /// <see cref="IServiceCollection"/>. This includes the <see cref="TimeProvider"/>, 
-    /// <see cref="IJobExecuter"/>, and <see cref="Microsoft.Extensions.Hosting.IHostedService"/> 
+    /// <see cref="IJobExecutor"/>, and <see cref="Microsoft.Extensions.Hosting.IHostedService"/> 
     /// (implemented by <see cref="JobExecuterBackgroundService"/>) for executing scheduled jobs. 
     /// The method can be called multiple times to register different job configurations. 
     /// Note that the application will follow the patterns of <see cref="IHostedService"/>, and the 
@@ -42,11 +23,35 @@ public static class ServiceCollectionJobSchedulerServiceExtensions
     /// that the job configuration is valid and that any necessary error handling is implemented within 
     /// the job itself.
     /// </summary>
+    /// <typeparam name="TJob">The implementation of <see cref="IJob"/></typeparam>
+    /// <param name="services">The <see cref="IServiceCollection"/> to add the services to.</param>
+    /// <param name="jobConfiguration">The configuration for the scheduled job.</param>
+    /// <returns>The original <see cref="IServiceCollection"/> with the job scheduler services added.</returns> 
+    public static IServiceCollection AddHostedJobScheduler<TJob>(this IServiceCollection services,
+        JobConfiguration jobConfiguration) where TJob : class, IJob => services
+            .AddJobScheduler<TJob>(jobConfiguration)
+            .AddHostedService<JobExecuterBackgroundService>();
+
+    /// <summary>
+    /// Adds the job scheduler services, excluding the hosted service, to the specified 
+    /// <see cref="IServiceCollection"/>. This includes the <see cref="TimeProvider"/> and 
+    /// <see cref="IJobExecutor"/>. The method can be called multiple times to register different 
+    /// job configurations. Note that the job executor does not handle exceptions; it is the 
+    /// responsibility of the caller to ensure that the job configuration is valid and that any 
+    /// necessary error handling is implemented within the job itself.
+    /// </summary>
+    /// <typeparam name="TJob">The implementation of <see cref="IJob"/></typeparam>
     /// <param name="services">The <see cref="IServiceCollection"/> to add the services to.</param>
     /// <param name="jobConfiguration">The configuration for the scheduled job.</param>
     /// <returns>The original <see cref="IServiceCollection"/> with the job scheduler services added.</returns>
-    public static IServiceCollection AddHostedJobScheduler(this IServiceCollection services,
-        JobConfiguration jobConfiguration) => services
-            .AddJobScheduler(jobConfiguration)
-            .AddHostedService<JobExecuterBackgroundService>();
+    public static IServiceCollection AddJobScheduler<TJob>(this IServiceCollection services,
+        JobConfiguration jobConfiguration) where TJob : class, IJob
+    {
+        jobConfiguration.JobType = typeof(TJob);
+        services.TryAddSingleton(TimeProvider.System);
+        services.TryAddSingleton<IJobExecutor, JobExecutor.JobExecutor>();
+        return services
+            .AddSingleton(jobConfiguration)
+            .AddTransient<TJob>();
+    }
 }

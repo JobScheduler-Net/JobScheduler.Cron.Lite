@@ -8,25 +8,22 @@ namespace JobScheduler.Cron.Configurations;
 public class JobConfiguration
 {
     /// <summary>
-    /// Gets or sets the cron expression that defines the schedule for the job.
-    /// The cron expression must be compatible with the NCrontab library 
-    /// (https://github.com/atifaziz/NCrontab).
+    /// Cron expression that defines the schedule for the job.
+    /// The cron expression must be compatible with the NCrontab (https://github.com/atifaziz/NCrontab).
     /// </summary>
     public string Cron { get; set; }
 
     /// <summary>
-    /// Gets or sets the function that will be executed when the job is triggered.
-    /// The function takes an <see cref="IServiceProvider"/> and a <see cref="CancellationToken"/>
-    /// as parameters and returns a <see cref="Task"/>.
-    /// The <see cref="IServiceProvider"/> provided will be from a scope created 
-    /// using the <see cref="ServiceProviderServiceExtensions.CreateAsyncScope"/> method.
+    /// Function to get reference date and time to run job.
+    /// By default, this function uses the <see cref="TimeProvider.GetUtcNow"/>.
     /// </summary>
-    public Func<IServiceProvider, CancellationToken, Task> OnExecute { get; set; }
+    public Func<IServiceProvider, DateTime> GetNow { get; set; } = static serviceProvider =>
+        serviceProvider.GetRequiredService<TimeProvider>().GetUtcNow().DateTime;
 
     /// <summary>
-    /// Gets or sets the function that returns the current date and time.
-    /// By default, this function uses the <see cref="TimeProvider"/> service to get the current UTC date and time.
+    /// The type of the job to be executed.
+    /// This property is used internally to identify the specific job implementation that will be run
+    /// according to the provided configuration. 
     /// </summary>
-    public Func<IServiceProvider, DateTime> GetNow { get; set; } = serviceProvider =>
-        serviceProvider.GetRequiredService<TimeProvider>().GetUtcNow().DateTime;
+    internal Type JobType { get; set; }
 }

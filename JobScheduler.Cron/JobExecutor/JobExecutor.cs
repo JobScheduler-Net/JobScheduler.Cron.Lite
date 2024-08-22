@@ -2,14 +2,14 @@
 using Microsoft.Extensions.DependencyInjection;
 using NCrontab;
 
-namespace JobScheduler.Cron.JobExecuter;
+namespace JobScheduler.Cron.JobExecutor;
 
-public class JobExecuter : IJobExecuter
+public class JobExecutor : IJobExecutor
 {
     private readonly IServiceProvider serviceProvider;
     private readonly IEnumerable<JobConfiguration> jobsConfiguration;
 
-    public JobExecuter(IServiceProvider serviceProvider, IEnumerable<JobConfiguration> jobsConfiguration)
+    public JobExecutor(IServiceProvider serviceProvider, IEnumerable<JobConfiguration> jobsConfiguration)
     {
         this.serviceProvider = serviceProvider;
         this.jobsConfiguration = jobsConfiguration;
@@ -35,7 +35,8 @@ public class JobExecuter : IJobExecuter
             await Task.Delay(nextOcurrence - now, cancellationToken);
 
             await using AsyncServiceScope scope = serviceProvider.CreateAsyncScope();
-            await jobConfiguration.OnExecute(scope.ServiceProvider, cancellationToken);
+            var job = (IJob)scope.ServiceProvider.GetRequiredService(jobConfiguration.JobType);
+            await job.Execute(cancellationToken);
         }
     }
 }
