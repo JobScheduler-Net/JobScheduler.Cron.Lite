@@ -4,7 +4,7 @@ using NCrontab;
 
 namespace JobScheduler.Cron;
 
-internal class AllJobsExecutor(IServiceProvider serviceProvider, IEnumerable<JobConfiguration> jobsConfiguration) : IJob
+internal sealed class AllJobsExecutor(IServiceProvider serviceProvider, IEnumerable<JobConfiguration> jobsConfiguration) : IJob
 {
     public Task Execute(CancellationToken cancellationToken)
     {

@@ -2,7 +2,7 @@
 
 namespace JobScheduler.Cron.Hosting;
 
-internal class AllJobsExecutorBackgroundService(IJob job) : BackgroundService
+internal sealed class AllJobsExecutorBackgroundService(IJob job) : BackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
