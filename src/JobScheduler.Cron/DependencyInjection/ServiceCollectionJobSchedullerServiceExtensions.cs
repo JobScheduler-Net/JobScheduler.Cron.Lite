@@ -1,6 +1,5 @@
 ﻿using JobScheduler.Cron.Configurations;
 using JobScheduler.Cron.Hosting;
-using JobScheduler.Cron.JobExecutor;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 

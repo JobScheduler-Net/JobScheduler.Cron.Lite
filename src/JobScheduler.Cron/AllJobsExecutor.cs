@@ -2,19 +2,10 @@
 using Microsoft.Extensions.DependencyInjection;
 using NCrontab;
 
-namespace JobScheduler.Cron.JobExecutor;
+namespace JobScheduler.Cron;
 
-internal class AllJobsExecutor : IJob
+internal class AllJobsExecutor(IServiceProvider serviceProvider, IEnumerable<JobConfiguration> jobsConfiguration) : IJob
 {
-    private readonly IServiceProvider serviceProvider;
-    private readonly IEnumerable<JobConfiguration> jobsConfiguration;
-
-    public AllJobsExecutor(IServiceProvider serviceProvider, IEnumerable<JobConfiguration> jobsConfiguration)
-    {
-        this.serviceProvider = serviceProvider;
-        this.jobsConfiguration = jobsConfiguration;
-    }
-
     public Task Execute(CancellationToken cancellationToken)
     {
         IEnumerable<Task> jobSchedulers = jobsConfiguration.Select(x => CreateJobScheduler(x, cancellationToken));

@@ -4,7 +4,7 @@
 
 In designing the job scheduler library, a decision was needed regarding how to handle exceptions that occur during job execution. Typically, centralized error handling might be implemented to catch and log exceptions, creating a record of failures.
 
-However, in this library, we decided to delegate all error handling to the job implementations themselves. This means that the `JobExecutor` does not catch exceptions or log any errors when executing jobs.
+However, in this library, we decided to delegate all error handling to the job implementations themselves. This means that the `IJob` does not catch exceptions or log any errors when executing jobs.
 
 ## Decision
 
