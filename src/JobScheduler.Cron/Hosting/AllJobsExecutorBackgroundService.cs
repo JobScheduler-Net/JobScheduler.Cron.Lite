@@ -10,7 +10,7 @@ internal class AllJobsExecutorBackgroundService(IJob job) : BackgroundService
         {
             await job.Execute(stoppingToken);
         }
-        catch (TaskCanceledException)
+        catch (OperationCanceledException)
         {
             // Expected exception
         }
