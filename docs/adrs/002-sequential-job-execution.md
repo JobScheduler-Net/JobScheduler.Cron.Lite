@@ -2,28 +2,23 @@
 
 ## Context
 
-In our job scheduling system, there was a decision to be made about whether to execute jobs in parallel or sequentially. Executing jobs in parallel can potentially reduce total execution time and increase throughput. However, it also introduces complexities and risks that need careful management.
+In designing the job scheduler library, a decision was needed regarding whether to allow parallel execution of jobs. While concurrent job execution might increase throughput in some cases, it introduces significant complexity in managing resources and ensuring thread safety.
+
+Concurrency can also pose significant risks, particularly if jobs are resource-intensive. Allowing multiple jobs to run in parallel could exhaust system resources, leading to instability or crashes. Furthermore, managing parallel execution would require the implementation of sophisticated limiting mechanisms to control the number of jobs running simultaneously.
 
 ## Decision
 
-We have decided **not** to execute jobs in parallel. Instead, jobs will be executed sequentially, ensuring that only one job is running at any given time.
+The decision was made to not allow parallel job execution within the job scheduler. Instead, jobs are executed sequentially to simplify concurrency management and reduce the risk of resource exhaustion or deadlocks. If parallel execution is desired, it is left to the client to implement their own solution outside of the job scheduler.
 
-## Justification
+## Consequences
 
-- **Concurrency Control is Complex and Risky**: Managing concurrency is inherently complex and introduces risks such as race conditions, deadlocks, and inconsistent states. Properly handling these scenarios requires significant effort and expertise.
+- **Pros:**
+  - Simplifies the job scheduler implementation by avoiding the need for complex concurrency management.
+  - Reduces the risk of resource exhaustion and system instability caused by uncontrolled parallel job execution.
 
-- **Need for Limiters**: To prevent resource exhaustion, limiters would need to be implemented to control the number of concurrent jobs. This adds further complexity to the system and requires continuous monitoring and adjustment.
+- **Cons:**
+  - May limit throughput in scenarios where parallel job execution could be beneficial.
+  - Requires clients who need parallel execution to implement their own concurrency solutions.
 
-- **Risk of Resource Exhaustion**: Without proper controls, parallel job execution could lead to the application running out of resources (e.g., CPU, memory, I/O), potentially causing performance degradation or crashes.
-
-- **Custom Solutions by Clients**: If clients require parallel job execution, they should implement their own solutions tailored to their specific needs and environment. This allows them to manage concurrency according to their own resource availability and performance requirements.
-
-## Alternatives Considered
-
-1. **Parallel Execution with Concurrency Controls**: This alternative would involve running multiple jobs in parallel with mechanisms in place to control the degree of concurrency (such as semaphores or queues). It was rejected due to the increased complexity and potential for error.
-
-2. **Configurable Parallelism**: Allowing a configurable number of concurrent jobs based on the environment and workload. This option was also rejected to keep the system simple and avoid the need for intricate configuration management.
-
-## Conclusion
-
-The decision to not execute jobs in parallel was made to prioritize simplicity, stability, and safety. While this approach may result in longer execution times in some cases, the benefits of avoiding the complexities and risks associated with concurrency outweigh the drawbacks. Clients who require parallel execution can implement their own solutions that best fit their needs.
+- **Mitigations:**
+  - Clearly document the decision to not support parallel execution and provide guidelines for clients on how to implement parallelism if needed.
