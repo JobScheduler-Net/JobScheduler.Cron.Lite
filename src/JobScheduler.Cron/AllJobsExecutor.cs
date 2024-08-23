@@ -26,7 +26,7 @@ internal class AllJobsExecutor(IServiceProvider serviceProvider, IEnumerable<Job
             await Task.Delay(nextOcurrence - now, cancellationToken);
 
             await using AsyncServiceScope scope = serviceProvider.CreateAsyncScope();
-            var job = (IJob)scope.ServiceProvider.GetRequiredService(jobConfiguration.JobType);
+            IJob job = (IJob)scope.ServiceProvider.GetRequiredService(jobConfiguration.JobType);
             await job.Execute(cancellationToken);
         }
     }

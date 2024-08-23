@@ -24,7 +24,7 @@ public class HostedJobSchedulerUnitTests
     {
         Job.ExecutionTime = jobExecutionTime;
         Job job;
-        using (var host = CreateHost())
+        using (IHost host = CreateHost())
         {
             await host.StartAsync();
             await Task.Delay(Job.CronTimeBetweenExecutions * Job.CountExpectedExecutions);
