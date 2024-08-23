@@ -1,13 +1,12 @@
-﻿using JobScheduler.Cron.JobExecutor;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Hosting;
 
 namespace JobScheduler.Cron.Hosting;
 
 internal class JobExecutorBackgroundService : BackgroundService
 {
-    private readonly IJobExecutor jobExecutor;
+    private readonly IJob job;
 
-    public JobExecutorBackgroundService(IJobExecutor jobExecutor) => this.jobExecutor = jobExecutor;
+    public JobExecutorBackgroundService(IJob job) => this.job = job;
 
-    protected override Task ExecuteAsync(CancellationToken stoppingToken) => jobExecutor.Execute(stoppingToken);
+    protected override Task ExecuteAsync(CancellationToken stoppingToken) => job.Execute(stoppingToken);
 }

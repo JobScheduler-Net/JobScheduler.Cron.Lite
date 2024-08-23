@@ -4,12 +4,12 @@ using NCrontab;
 
 namespace JobScheduler.Cron.JobExecutor;
 
-public class JobExecutor : IJobExecutor
+public class AllJobsExecutor : IJob
 {
     private readonly IServiceProvider serviceProvider;
     private readonly IEnumerable<JobConfiguration> jobsConfiguration;
 
-    public JobExecutor(IServiceProvider serviceProvider, IEnumerable<JobConfiguration> jobsConfiguration)
+    public AllJobsExecutor(IServiceProvider serviceProvider, IEnumerable<JobConfiguration> jobsConfiguration)
     {
         this.serviceProvider = serviceProvider;
         this.jobsConfiguration = jobsConfiguration;

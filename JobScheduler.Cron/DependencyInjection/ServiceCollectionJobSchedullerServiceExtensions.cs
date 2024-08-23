@@ -35,7 +35,7 @@ public static class ServiceCollectionJobSchedulerServiceExtensions
     /// <summary>
     /// Adds the job scheduler services, excluding the hosted service, to the specified 
     /// <see cref="IServiceCollection"/>. This includes the <see cref="TimeProvider"/> and 
-    /// <see cref="IJobExecutor"/>. The method can be called multiple times to register different 
+    /// <see cref="IJob"/>. The method can be called multiple times to register different 
     /// job configurations. Note that the job executor does not handle exceptions; it is the 
     /// responsibility of the caller to ensure that the job configuration is valid and that any 
     /// necessary error handling is implemented within the job itself.
@@ -49,7 +49,7 @@ public static class ServiceCollectionJobSchedulerServiceExtensions
     {
         jobConfiguration.JobType = typeof(TJob);
         services.TryAddSingleton(TimeProvider.System);
-        services.TryAddSingleton<IJobExecutor, JobExecutor.JobExecutor>();
+        services.TryAddSingleton<IJob, AllJobsExecutor>();
         return services
             .AddSingleton(jobConfiguration)
             .AddTransient<TJob>();
