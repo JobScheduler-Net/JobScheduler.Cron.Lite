@@ -19,6 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "adrs", "adrs", "{9F02B53A-2
 	ProjectSection(SolutionItems) = preProject
 		docs\adrs\001-error-handling.md = docs\adrs\001-error-handling.md
 		docs\adrs\002-sequential-job-execution.md = docs\adrs\002-sequential-job-execution.md
+		docs\adrs\003-handling-exceptions-in-backgroundservice.md = docs\adrs\003-handling-exceptions-in-backgroundservice.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{1CF5FDBF-1045-494B-BCCA-4B07BBAF3C7F}"
