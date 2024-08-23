@@ -1,15 +1,38 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35209.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobScheduler.Cron", "JobScheduler.Cron\JobScheduler.Cron.csproj", "{BD73DD54-AB24-4957-97D3-4BA73F81F04E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobScheduler.Cron", "src\JobScheduler.Cron\JobScheduler.Cron.csproj", "{BD73DD54-AB24-4957-97D3-4BA73F81F04E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9A53248B-5EA2-4CD0-9F89-F3FD38542583}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		LICENSE = LICENSE
 		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{81DCD265-6D85-4F35-ACCE-DBA7C726AA9A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8A488B3D-550C-4A0C-BA7B-5AE649311B0F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "adrs", "adrs", "{9F02B53A-20A4-446C-B53A-16DBA3788EF3}"
+	ProjectSection(SolutionItems) = preProject
+		docs\adrs\001-error-handling.md = docs\adrs\001-error-handling.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{82E2B283-1177-4A3B-9B64-EEBC6ADE99A7}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{0E4757D5-07C8-46F6-8596-A8A9F985F5CF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{1CF5FDBF-1045-494B-BCCA-4B07BBAF3C7F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{F68EF749-FD0E-4C59-AA6F-7504D51F4FE2}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
 	EndProjectSection
 EndProject
 Global
@@ -28,5 +51,13 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC99323A-6421-44EC-9BF8-678843C4BBDE}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F68EF749-FD0E-4C59-AA6F-7504D51F4FE2} = {1CF5FDBF-1045-494B-BCCA-4B07BBAF3C7F}
+		{1CF5FDBF-1045-494B-BCCA-4B07BBAF3C7F} = {9A53248B-5EA2-4CD0-9F89-F3FD38542583}
+		{0E4757D5-07C8-46F6-8596-A8A9F985F5CF} = {82E2B283-1177-4A3B-9B64-EEBC6ADE99A7}
+		{82E2B283-1177-4A3B-9B64-EEBC6ADE99A7} = {0E4757D5-07C8-46F6-8596-A8A9F985F5CF}
+		{9F02B53A-20A4-446C-B53A-16DBA3788EF3} = {81DCD265-6D85-4F35-ACCE-DBA7C726AA9A}
+		{BD73DD54-AB24-4957-97D3-4BA73F81F04E} = {8A488B3D-550C-4A0C-BA7B-5AE649311B0F}
 	EndGlobalSection
 EndGlobal
