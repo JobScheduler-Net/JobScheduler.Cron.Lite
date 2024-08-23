@@ -14,7 +14,14 @@ public sealed class Job(TimeProvider timeProvider) : IJob, IAsyncDisposable
     public async Task Execute(CancellationToken cancellationToken)
     {
         TimeStartExecution.Add(timeProvider.GetUtcNow());
-        await Task.Delay(ExecutionTime, cancellationToken);
+        try
+        {
+            await Task.Delay(ExecutionTime, cancellationToken);
+        }
+        catch (TaskCanceledException)
+        {
+            // Expected exception
+        }
     }
 
     public ValueTask DisposeAsync()
