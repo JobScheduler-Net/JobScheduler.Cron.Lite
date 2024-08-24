@@ -2,8 +2,8 @@
 
 ## Overview
 
-The `JobScheduler.Cron` library provides a flexible and easy-to-use solution for integrating job 
-scheduling into .NET applications. It allows you to configure and manage scheduled jobs using cron 
+The `JobScheduler.Cron` library provides a flexible and easy-to-use solution for integrating job
+scheduling into .NET applications. It allows you to configure and manage scheduled jobs using cron
 expressions and background services.
 
 ## Installation
@@ -24,8 +24,8 @@ Alternatively, you can add the package directly to your project file:
 
 ### Hosted Job Scheduler
 
-To configure the job scheduler with a hosted service that runs the jobs in the background, use the 
-`AddHostedJobScheduler` method. This method registers all the services required for job scheduling 
+To configure the job scheduler with a hosted service that runs the jobs in the background, use the
+`AddHostedJobScheduler` method. This method registers all the services required for job scheduling
 and also adds a hosted service to manage job execution.
 
 ```csharp
@@ -40,8 +40,8 @@ services.AddHostedJobScheduler<Job>(new JobConfiguration
 
 ### Only Job Scheduler
 
-Registers the necessary services for job scheduling but does not include the background service 
-that executes the jobs. It is the responsibility of the user to call IJobExecutor.Execute to trigger the 
+Registers the necessary services for job scheduling but does not include the background service
+that executes the jobs. It is the responsibility of the user to call IJobExecutor.Execute to trigger the
 job execution according to the configured schedule.
 
 ```csharp
@@ -59,12 +59,12 @@ services.AddJobScheduler<Job>(new JobConfiguration
 The `JobConfiguration` class allows you to specify the schedule and execution logic for your jobs:
 
 - **Cron**: A cron expression compatible with the NCrontab library for defining the job schedule.
-- **GetNow**: A `Func<IServiceProvider, DateTime>` delegate that provides the current time, which 
+- **GetNow**: A `Func<IServiceProvider, DateTime>` delegate that provides the current time, which
 defaults to the system's UTC time.
 
 ### Error Handling
 
-The job executor does not handle exceptions. It is the responsibility of the job configuration to ensure 
+The job executor does not handle exceptions. It is the responsibility of the job configuration to ensure
 that all necessary error handling is implemented within the job itself.
 
 ## Contributing
