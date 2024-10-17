@@ -14,10 +14,10 @@ public class JobConfiguration
     public string Cron { get; set; }
 
     /// <summary>
-    /// Function to get reference date and time to run job.
+    /// Function to get the reference date and time for running the job.
     /// By default, this function uses the <see cref="TimeProvider.GetUtcNow"/>.
     /// </summary>
-    public Func<IServiceProvider, DateTime> GetNow { get; set; } = static serviceProvider =>
+    public Func<IServiceProvider, DateTime> GetTimeReference { get; set; } = static serviceProvider =>
         serviceProvider.GetRequiredService<TimeProvider>().GetUtcNow().DateTime;
 
     /// <summary>

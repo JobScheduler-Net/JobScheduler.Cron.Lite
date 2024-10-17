@@ -71,13 +71,15 @@ services.AddJobScheduler<Job>(new JobConfiguration
 The `JobConfiguration` class allows you to specify the schedule and execution logic for your jobs:
 
 - **Cron**: A cron expression compatible with the NCrontab library for defining the job schedule.
-- **GetNow**: A `Func<IServiceProvider, DateTime>` delegate that provides the current time, which
-defaults to the system's UTC time.
+- **GetTimeReference**: A `Func<IServiceProvider, DateTime>` delegate that provides the reference date and time for running the job. By default, this function uses the respective code:
+
+```csharp
+static serviceProvider => serviceProvider.GetRequiredService<TimeProvider>().GetUtcNow().DateTime;
+```
 
 ### Error Handling
 
-The job executor does not handle exceptions. It is the responsibility of the job configuration to ensure
-that all necessary error handling is implemented within the job itself.
+The job executor does not handle exceptions. It is the responsibility of the job configuration to ensure that all necessary error handling is implemented within the job itself.
 
 ## Contributing
 

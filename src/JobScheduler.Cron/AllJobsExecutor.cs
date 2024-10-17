@@ -21,9 +21,9 @@ internal sealed class AllJobsExecutor(IServiceProvider serviceProvider, IEnumera
 
         while (!cancellationToken.IsCancellationRequested)
         {
-            DateTime now = jobConfiguration.GetNow(serviceProvider);
-            DateTime nextOcurrence = crontabSchedule.GetNextOccurrence(now);
-            await Task.Delay(nextOcurrence - now, cancellationToken);
+            DateTime timeReference = jobConfiguration.GetTimeReference(serviceProvider);
+            DateTime nextOcurrence = crontabSchedule.GetNextOccurrence(timeReference);
+            await Task.Delay(nextOcurrence - timeReference, cancellationToken);
 
             await using AsyncServiceScope scope = serviceProvider.CreateAsyncScope();
             IJob job = (IJob)scope.ServiceProvider.GetRequiredService(jobConfiguration.JobType);
