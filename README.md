@@ -10,13 +10,13 @@ expressions and background services.
 
 When choosing a job scheduling library for .NET, it's important to consider various factors like codebase size, scheduling capabilities, and the ease of customization. Below is a comparison of `JobScheduler.Cron` with other popular libraries, such as Hangfire and Quartz.NET:
 
-| Feature / Library         | Hangfire                                          | Quartz.NET                                         | JobScheduler.Cron               |
-|---------------------------|---------------------------------------------------|---------------------------------------------------|---------------------------------|
-| **Codebase Size**         | +53,000 lines of code                             | +61,000 lines of code                              | Less than 200 lines of code     |
-| **Scheduling**            | Recurring jobs, delayed jobs, fire-and-forget jobs | Cron-based scheduling, simple triggers, calendars  | Cron-based scheduling only      |
-| **Customization**         | Possible but requires significant time to understand and expand | Possible but requires significant time to understand and expand | Easily customizable due to its simplicity |
-| **Default Behavior Configuration** | Requires configuring parallelism, logging, database setup, and scoped dependency injection | Requires configuring parallelism, logging, and database setup | Requires minimal configuration; runs out-of-the-box with basic settings; logging added on demand |
-| **Testability**           | Limited flexibility in mocking time               | Limited flexibility in mocking time               | High testability with easy mocking of time and other interfaces |
+| Feature / Library         | Hangfire                                                                                      | Quartz.NET                                                        | JobScheduler.Cron                                                                                 |
+|---------------------------|-----------------------------------------------------------------------------------------------|-------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| **Codebase Size**         | +53,000 lines of code                                                                         | +61,000 lines of code                                             | Less than 200 lines of code                                                                       |
+| **Scheduling**            | Recurring jobs, delayed jobs, fire-and-forget jobs                                            | Cron-based scheduling, simple triggers, calendars                 | Cron-based scheduling only                                                                        |
+| **Customization**         | Possible but requires significant time to understand and expand                               | Possible but requires significant time to understand and expand   | Easily customizable due to its simplicity                                                         |
+| **Default Configuration** | Requires configuring parallelism, logging, database setup, and scoped dependency injection    | Requires configuring parallelism, logging, and database setup     | Requires minimal configuration; runs out-of-the-box with basic settings; logging added on demand  |
+| **Testability**           | Limited flexibility in mocking time                                                           | Limited flexibility in mocking time                               | High testability with easy mocking of time and other interfaces                                   |
 
 ## Installation
 
