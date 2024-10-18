@@ -49,7 +49,14 @@ public class MyCustomJob : IJob
 {
     public Task Execute(CancellationToken cancellationToken)
     {
-        // Your job logic goes here
+        try
+        {
+            // Your job logic goes here
+        } 
+        catch (Exception exception) 
+        {
+            // Handle exception, not throwing exception
+        }
     }
 }
 
