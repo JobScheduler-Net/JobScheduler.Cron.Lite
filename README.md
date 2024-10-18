@@ -34,6 +34,25 @@ Alternatively, you can add the package directly to your project file:
 
 ## Usage
 
+### Creating a Custom Job
+
+To create a custom job, you need to implement the `IJob` interface. The `Execute` method will contain the logic that should be executed when the job is triggered.
+
+Here’s an example of a custom job implementation:
+
+```csharp
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+
+public class MyCustomJob : IJob
+{
+    public Task Execute(CancellationToken cancellationToken)
+    {
+        // Your job logic goes here
+    }
+}
+
 ### Hosted Job Scheduler
 
 To configure the job scheduler with a hosted service that runs the jobs in the background, use the
@@ -41,10 +60,10 @@ To configure the job scheduler with a hosted service that runs the jobs in the b
 and also adds a hosted service to manage job execution.
 
 ```csharp
-using JobScheduler.Cron;
+using JobScheduler.Cron.DependencyInjection;
 
 // Configure job scheduler services with hosted service
-services.AddHostedJobScheduler<Job>(new JobConfiguration
+services.AddHostedJobScheduler<MyCustomJob>(new JobConfiguration
 {
     Cron = "0 0 * * *",
 });
@@ -53,17 +72,31 @@ services.AddHostedJobScheduler<Job>(new JobConfiguration
 ### Only Job Scheduler
 
 Registers the necessary services for job scheduling but does not include the background service
-that executes the jobs. It is the responsibility of the user to call IJobExecutor.Execute to trigger the
+that executes the jobs. It is the responsibility of the user to call IJob.Execute to trigger the
 job execution according to the configured schedule.
+
+**Configuration**
+
+```csharp
+using JobScheduler.Cron.DependencyInjection;
+
+// Configure job scheduler services
+services.AddJobScheduler<MyCustomJob>(new JobConfiguration
+{
+    Cron = "0 0 * * *",
+});
+```
+
+**Execution**
 
 ```csharp
 using JobScheduler.Cron;
 
-// Configure job scheduler services
-services.AddJobScheduler<Job>(new JobConfiguration
-{
-    Cron = "0 0 * * *",
-});
+// Resolve the job from the service provider
+var job = serviceProvider.GetRequiredService<IJob>();
+
+// Manually run configured jobs
+await job.Execute(default);
 ```
 
 ### Job Configuration
