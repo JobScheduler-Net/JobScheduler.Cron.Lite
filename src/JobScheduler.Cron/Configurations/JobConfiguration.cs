@@ -15,7 +15,7 @@ public class JobConfiguration
 
     /// <summary>
     /// Function to get the reference date and time for running the job.
-    /// By default, this function uses the <see cref="TimeProvider.GetUtcNow"/>.
+    /// By default, this function uses the <see cref="TimeProvider.GetUtcNow().DateTime"/>.
     /// </summary>
     public Func<IServiceProvider, DateTime> GetTimeReference { get; set; } = static serviceProvider =>
         serviceProvider.GetRequiredService<TimeProvider>().GetUtcNow().DateTime;
