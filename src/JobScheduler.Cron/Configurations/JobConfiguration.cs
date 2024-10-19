@@ -9,7 +9,8 @@ public class JobConfiguration
 {
     /// <summary>
     /// Cron expression that defines the schedule for the job.
-    /// The cron expression must be compatible with the NCrontab (https://github.com/atifaziz/NCrontab).
+    /// The cron expression must follow the standard format with seconds and 
+    /// be compatible with NCrontab (https://github.com/atifaziz/NCrontab).
     /// </summary>
     public string Cron { get; set; }
 
