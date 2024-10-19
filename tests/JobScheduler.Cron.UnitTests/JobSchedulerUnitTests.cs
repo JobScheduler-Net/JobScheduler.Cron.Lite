@@ -36,10 +36,11 @@ public class HostedJobSchedulerUnitTests
 
     private static IHost CreateHost() => Host.CreateDefaultBuilder()
         .ConfigureServices((context, services) => services
-            .AddHostedJobScheduler<Job>(new()
+            .AddJobScheduler<Job>(new()
             {
                 Cron = Job.Cron
             })
+            .AddHostedJobScheduler()
             .AddSingleton<Job>()
         )
         .Build();

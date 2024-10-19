@@ -59,42 +59,32 @@ public class MyCustomJob : IJob
         }
     }
 }
-
-### Hosted Job Scheduler
-
-To configure the job scheduler with a hosted service that runs the jobs in the background, use the
-`AddHostedJobScheduler` method. This method registers all the services required for job scheduling
-and also adds a hosted service to manage job execution.
-
-```csharp
-using JobScheduler.Cron.DependencyInjection;
-
-// Configure job scheduler services with hosted service
-services.AddHostedJobScheduler<MyCustomJob>(new JobConfiguration
-{
-    Cron = "0 0 * * *",
-});
 ```
 
-### Only Job Scheduler
+### Configure a Custom Job
 
-Registers the necessary services for job scheduling but does not include the background service
-that executes the jobs. It is the responsibility of the user to call IJob.Execute to trigger the
-job execution according to the configured schedule.
-
-**Configuration**
+To configure the job scheduler, use the `AddJobScheduler` method.
 
 ```csharp
 using JobScheduler.Cron.DependencyInjection;
 
-// Configure job scheduler services
+// Configure a job scheduler
 services.AddJobScheduler<MyCustomJob>(new JobConfiguration
 {
     Cron = "0 0 * * *",
 });
+
+// Configure another job scheduler
+services.AddJobScheduler<MyOtherCustomJob>(new JobConfiguration
+{
+    Cron = "0 0 * * *",
+});
 ```
 
-**Execution**
+This method inject `IJob`. If you want to run configured jobs manually, 
+use this interface to do so.
+
+**Manual Execution**
 
 ```csharp
 using JobScheduler.Cron;
@@ -104,6 +94,20 @@ var job = serviceProvider.GetRequiredService<IJob>();
 
 // Manually run configured jobs
 await job.Execute(default);
+```
+
+### Configure hosted service
+
+To configure a background service using the hosted service pattern, 
+use `AddHostedJobScheduler`.
+
+**Configuration**
+
+```csharp
+using JobScheduler.Cron.DependencyInjection;
+
+// Configure the hosted service to run all configured jobs
+services.AddHostedJobScheduler();
 ```
 
 ### Job Configuration
