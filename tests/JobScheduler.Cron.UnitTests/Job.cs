@@ -20,6 +20,6 @@ public sealed class Job(TimeProvider timeProvider) : IJob, IAsyncDisposable
     public ValueTask DisposeAsync()
     {
         ExecuteDisposeAsync = true;
-        return ValueTask.CompletedTask;
+        return default;
     }
 }

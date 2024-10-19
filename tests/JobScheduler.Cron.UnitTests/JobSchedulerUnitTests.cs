@@ -16,7 +16,8 @@ public class HostedJobSchedulerUnitTests
     // |<---------->   |<-->           |<---------->   |<-->           |<---------->   |<-->           |        
     [Fact]
     public Task HostedJobScheduler_Should_Skip_Execution_When_Previous_Job_Is_Still_Running() => ExecuteTest(
-        Job.CronTimeBetweenExecutions + Job.AllowedTimeMargin, Job.CronTimeBetweenExecutions * 2, 
+        Job.CronTimeBetweenExecutions + Job.AllowedTimeMargin,
+        TimeSpan.FromTicks(Job.CronTimeBetweenExecutions.Ticks * 2),
         Job.CountExpectedExecutions / 2);
 
     private static async Task ExecuteTest(TimeSpan jobExecutionTime, TimeSpan? timeBetweenExecutions = default,
@@ -27,7 +28,7 @@ public class HostedJobSchedulerUnitTests
         using (IHost host = CreateHost())
         {
             await host.StartAsync();
-            await Task.Delay(Job.CronTimeBetweenExecutions * Job.CountExpectedExecutions);
+            await Task.Delay(TimeSpan.FromTicks(Job.CronTimeBetweenExecutions.Ticks * Job.CountExpectedExecutions));
             job = host.Services.GetRequiredService<Job>();
         }
         AssertJob(job, timeBetweenExecutions, countExpectedExecutions);
