@@ -1,4 +1,4 @@
-﻿<div style="text-align: center;">
+﻿<div style="display: flex; justify-content: center;">
     <img src="icon.png" alt="Icon" style="max-width: 128px; height: auto;" />
 </div>
 
