@@ -1,4 +1,6 @@
-﻿# JobScheduler.Cron
+﻿![Icon](icon.png)
+
+# JobScheduler.Cron
 
 ## Overview
 
