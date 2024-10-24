@@ -1,5 +1,5 @@
 ﻿<p align="center">
-    <img src="icon.png" alt="Icon" style="max-width: 128px; height: auto;" />
+    <img src="icon.png" alt="Icon"/>
 </p>
 
 # JobScheduler.Cron
