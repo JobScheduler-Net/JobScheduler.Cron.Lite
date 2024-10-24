@@ -1,0 +1,9 @@
+# IDE's
+.vs
+.idea
+*.user
+.config
+
+# .NET
+bin
+obj
