@@ -1,6 +1,6 @@
-﻿<div style="display: flex; justify-content: center;">
+﻿<p align="center">
     <img src="icon.png" alt="Icon" style="max-width: 128px; height: auto;" />
-</div>
+</p>
 
 # JobScheduler.Cron
 
