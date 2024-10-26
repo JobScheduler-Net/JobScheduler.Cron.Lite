@@ -1,9 +1,9 @@
-﻿using JobScheduler.Cron.Configurations;
-using JobScheduler.Cron.Hosting;
+﻿using JobScheduler.Cron.Lite.Configurations;
+using JobScheduler.Cron.Lite.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
-namespace JobScheduler.Cron.DependencyInjection;
+namespace JobScheduler.Cron.Lite.DependencyInjection;
 
 /// <summary>
 /// Extension methods for adding job scheduling services to the <see cref="IServiceCollection"/>.

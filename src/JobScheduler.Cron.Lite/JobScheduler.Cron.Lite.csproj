@@ -11,7 +11,7 @@
 		<Summary>Very simple cron job scheduler.</Summary>
 		<Description>Provides small, flexible and easy-to-use solution for scheduling a cron job.</Description>
 		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-		<RepositoryUrl>https://github.com/JobScheduler-Net/JobScheduler.Cron</RepositoryUrl>
+		<RepositoryUrl>https://github.com/JobScheduler-Net/JobScheduler.Cron.Lite</RepositoryUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageIcon>icon.png</PackageIcon>
 
