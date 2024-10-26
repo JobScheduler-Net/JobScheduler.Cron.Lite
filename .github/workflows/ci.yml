@@ -21,4 +21,4 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Test
-      run: dotnet test tests/JobScheduler.Cron.UnitTests/JobScheduler.Cron.UnitTests.csproj
+      run: dotnet test tests/JobScheduler.Cron.Lite.UnitTests/JobScheduler.Cron.Lite.UnitTests.csproj
