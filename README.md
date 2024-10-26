@@ -48,6 +48,7 @@ Here’s an example of a custom job implementation:
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using JobScheduler.Cron.Lite;
 
 public class MyCustomJob : IJob
 {
@@ -71,6 +72,7 @@ To configure the job scheduler, use the `AddJobScheduler` method.
 
 ```csharp
 using JobScheduler.Cron.Lite.DependencyInjection;
+using JobScheduler.Cron.Lite.Configurations;
 
 // Configure a job scheduler
 services.AddJobScheduler<MyCustomJob>(new JobConfiguration
