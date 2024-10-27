@@ -28,7 +28,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\src\JobScheduler.Cron\JobScheduler.Cron.csproj" />
+		<ProjectReference Include="..\..\src\JobScheduler.Cron.Lite\JobScheduler.Cron.Lite.csproj" />
 	</ItemGroup>
 
 </Project>

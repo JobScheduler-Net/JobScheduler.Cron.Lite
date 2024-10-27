@@ -1,8 +1,8 @@
-﻿using JobScheduler.Cron.Configurations;
+﻿using JobScheduler.Cron.Lite.Configurations;
 using Microsoft.Extensions.DependencyInjection;
 using NCrontab;
 
-namespace JobScheduler.Cron;
+namespace JobScheduler.Cron.Lite;
 
 internal sealed class AllJobsExecutor(IServiceProvider serviceProvider, IEnumerable<JobConfiguration> jobsConfiguration) : IJob
 {

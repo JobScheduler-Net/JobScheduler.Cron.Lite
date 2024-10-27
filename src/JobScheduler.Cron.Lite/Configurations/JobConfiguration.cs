@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace JobScheduler.Cron.Configurations;
+namespace JobScheduler.Cron.Lite.Configurations;
 
 /// <summary>
 /// Represents the configuration settings for a scheduled job.

@@ -1,8 +1,8 @@
-using JobScheduler.Cron.DependencyInjection;
+using JobScheduler.Cron.Lite.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace JobScheduler.Cron.UnitTests;
+namespace JobScheduler.Cron.Lite.UnitTests;
 
 public class HostedJobSchedulerUnitTests
 {

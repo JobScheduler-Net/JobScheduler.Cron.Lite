@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Hosting;
 
-namespace JobScheduler.Cron.Hosting;
+namespace JobScheduler.Cron.Lite.Hosting;
 
 internal sealed class AllJobsExecutorBackgroundService(IJob job) : BackgroundService
 {

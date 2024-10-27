@@ -2,19 +2,19 @@
     <img src="icon.png" alt="Icon"/>
 </p>
 
-# JobScheduler.Cron
+# JobScheduler.Cron.Lite
 
 ## Overview
 
-The `JobScheduler.Cron` library provides a flexible and easy-to-use solution for integrating job
+The `JobScheduler.Cron.Lite` library provides a flexible and easy-to-use solution for integrating job
 scheduling into .NET applications. It allows you to configure and manage scheduled jobs using cron
 expressions and background services.
 
 ## Comparison with Other Job Scheduling Libraries
 
-When choosing a job scheduling library for .NET, it's important to consider various factors like codebase size, scheduling capabilities, and the ease of customization. Below is a comparison of `JobScheduler.Cron` with other popular libraries, such as Hangfire and Quartz.NET:
+When choosing a job scheduling library for .NET, it's important to consider various factors like codebase size, scheduling capabilities, and the ease of customization. Below is a comparison of `JobScheduler.Cron.Lite` with other popular libraries, such as Hangfire and Quartz.NET:
 
-| Feature / Library         | Hangfire                                                                                      | Quartz.NET                                                        | JobScheduler.Cron                                                                                 |
+| Feature / Library         | Hangfire                                                                                      | Quartz.NET                                                        | JobScheduler.Cron.Lite                                                                                 |
 |---------------------------|-----------------------------------------------------------------------------------------------|-------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
 | **Codebase Size**         | +40,000 lines of code, with +7,000 lines being executable                                     | +55,000 lines of code, with +12,000 lines being executable        | 120 lines of code, with only 20 lines being executable                                  |
 | **Scheduling**            | Recurring jobs, delayed jobs, fire-and-forget jobs                                            | Cron-based scheduling, simple triggers, calendars                 | Cron-based scheduling only                                                                        |
@@ -24,16 +24,16 @@ When choosing a job scheduling library for .NET, it's important to consider vari
 
 ## Installation
 
-You can install the `JobScheduler.Cron` library via NuGet. Use the following command in your package manager console:
+You can install the `JobScheduler.Cron.Lite` library via NuGet. Use the following command in your package manager console:
 
 ```bash
-Install-Package JobScheduler.Cron
+Install-Package JobScheduler.Cron.Lite
 ```
 
 Alternatively, you can add the package directly to your project file:
 
 ```xml
-<PackageReference Include="JobScheduler.Cron" Version="1.0.0" />
+<PackageReference Include="JobScheduler.Cron.Lite" Version="1.0.0" />
 ```
 
 ## Usage
@@ -48,6 +48,7 @@ Here’s an example of a custom job implementation:
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using JobScheduler.Cron.Lite;
 
 public class MyCustomJob : IJob
 {
@@ -70,7 +71,8 @@ public class MyCustomJob : IJob
 To configure the job scheduler, use the `AddJobScheduler` method.
 
 ```csharp
-using JobScheduler.Cron.DependencyInjection;
+using JobScheduler.Cron.Lite.DependencyInjection;
+using JobScheduler.Cron.Lite.Configurations;
 
 // Configure a job scheduler
 services.AddJobScheduler<MyCustomJob>(new JobConfiguration
@@ -91,7 +93,7 @@ use this interface to do so.
 **Manual Execution**
 
 ```csharp
-using JobScheduler.Cron;
+using JobScheduler.Cron.Lite;
 
 // Resolve the job from the service provider
 var job = serviceProvider.GetRequiredService<IJob>();
@@ -108,7 +110,7 @@ use `AddHostedJobScheduler`.
 **Configuration**
 
 ```csharp
-using JobScheduler.Cron.DependencyInjection;
+using JobScheduler.Cron.Lite.DependencyInjection;
 
 // Configure the hosted service to run all configured jobs
 services.AddHostedJobScheduler();

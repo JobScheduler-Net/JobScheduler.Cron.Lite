@@ -1,4 +1,4 @@
-namespace JobScheduler.Cron.UnitTests;
+namespace JobScheduler.Cron.Lite.UnitTests;
 
 public sealed class Job(TimeProvider timeProvider) : IJob, IAsyncDisposable
 {

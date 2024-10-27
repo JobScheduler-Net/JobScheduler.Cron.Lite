@@ -1,4 +1,4 @@
-namespace JobScheduler.Cron;
+namespace JobScheduler.Cron.Lite;
 
 public interface IJob 
 {
