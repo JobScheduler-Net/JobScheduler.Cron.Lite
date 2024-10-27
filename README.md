@@ -2,6 +2,8 @@
     <img src="icon.png" alt="Icon"/>
 </p>
 
+![NuGet Version](https://img.shields.io/nuget/v/JobScheduler.Cron.Lite)
+
 # JobScheduler.Cron.Lite
 
 ## Overview
@@ -22,21 +24,13 @@ When choosing a job scheduling library for .NET, it's important to consider vari
 | **Default Configuration** | Requires configuring parallelism, logging, database setup, and scoped dependency injection    | Requires configuring parallelism, logging, and database setup     | Requires minimal configuration; runs out-of-the-box with basic settings; logging added on demand  |
 | **Testability**           | Limited flexibility in mocking time                                                           | Limited flexibility in mocking time                               | High testability with easy mocking of time and other interfaces                                   |
 
-## Installation
+## Get Started
 
-You can install the `JobScheduler.Cron.Lite` library via NuGet. Use the following command in your package manager console:
+You can install the `JobScheduler.Cron.Lite` following command:
 
 ```bash
-Install-Package JobScheduler.Cron.Lite
+dotnet add package JobScheduler.Cron.Lite
 ```
-
-Alternatively, you can add the package directly to your project file:
-
-```xml
-<PackageReference Include="JobScheduler.Cron.Lite" Version="1.0.0" />
-```
-
-## Usage
 
 ### Creating a Custom Job
 
@@ -77,13 +71,13 @@ using JobScheduler.Cron.Lite.Configurations;
 // Configure a job scheduler
 services.AddJobScheduler<MyCustomJob>(new JobConfiguration
 {
-    Cron = "0 0 * * *",
+    Cron = "* * * * * *",
 });
 
 // Configure another job scheduler
 services.AddJobScheduler<MyOtherCustomJob>(new JobConfiguration
 {
-    Cron = "0 0 * * *",
+    Cron = "* * * * * *",
 });
 ```
 
