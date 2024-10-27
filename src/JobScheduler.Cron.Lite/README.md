@@ -2,7 +2,7 @@
 
 Provides a small, flexible, and easy-to-use solution for scheduling a cron job — built with only 20 executable lines of code, making it simple to understand, customize, and expand to fit your needs.
 
-## Comparison with Other Job Scheduling Libraries
+## Features Comparison
 
 When choosing a job scheduling library for .NET, it's important to consider various factors like codebase size, scheduling capabilities, and the ease of customization. Below is a comparison of `JobScheduler.Cron.Lite` with other popular libraries, such as Hangfire and Quartz.NET:
 
@@ -13,6 +13,18 @@ When choosing a job scheduling library for .NET, it's important to consider vari
 | **Customization**         | Possible but requires significant time to understand and expand                               | Possible but requires significant time to understand and expand   | Easily customizable due to its simplicity                                                         |
 | **Default Configuration** | Requires configuring parallelism, logging, database setup, and scoped dependency injection    | Requires configuring parallelism, logging, and database setup     | Requires minimal configuration; runs out-of-the-box with basic settings; logging added on demand  |
 | **Testability**           | Limited flexibility in mocking time                                                           | Limited flexibility in mocking time                               | High testability with easy mocking of time and other interfaces                                   |
+
+## Resource Usage Comparison
+
+Efficient resource usage is a key factor when choosing a job scheduling library. Below is a comparison of `JobScheduler.Cron.Lite` with other popular libraries, including Quartz.NET, showcasing their memory and object allocation.
+
+| Feature / Library          | Baseline (.NET only)                | JobScheduler.Cron.Lite             | Quartz.NET                        |
+|----------------------------|-------------------------------------|------------------------------------|-----------------------------------|
+| **Objects in Heap**        | 7,081                               | 7,065                              | 10,982                            |
+| **Memory Usage**           | 615.05 KB                           | 592.64 KB                          | 854.55 KB                         |
+* Test executed with two jobs returning completed task and executing every second.
+
+`JobScheduler.Cron.Lite` no additional allocations beyond the baseline and significantly more efficient than Quartz.NET, providing a minimal footprint ideal for .NET applications prioritizing performance.
 
 ## Get Started
 
