@@ -1,16 +1,6 @@
-﻿<p align="center">
-    <img src="icon.png" alt="Icon"/>
-</p>
+﻿## Overview
 
-![NuGet Version](https://img.shields.io/nuget/v/JobScheduler.Cron.Lite)
-
-# JobScheduler.Cron.Lite
-
-## Overview
-
-The `JobScheduler.Cron.Lite` library provides a flexible and easy-to-use solution for integrating job
-scheduling into .NET applications. It allows you to configure and manage scheduled jobs using cron
-expressions and background services.
+Provides a small, flexible, and easy-to-use solution for scheduling a cron job — built with only 20 executable lines of code, making it simple to understand, customize, and expand to fit your needs.
 
 ## Comparison with Other Job Scheduling Libraries
 
@@ -25,12 +15,6 @@ When choosing a job scheduling library for .NET, it's important to consider vari
 | **Testability**           | Limited flexibility in mocking time                                                           | Limited flexibility in mocking time                               | High testability with easy mocking of time and other interfaces                                   |
 
 ## Get Started
-
-You can install the `JobScheduler.Cron.Lite` following command:
-
-```bash
-dotnet add package JobScheduler.Cron.Lite
-```
 
 ### Creating a Custom Job
 
@@ -124,7 +108,3 @@ static serviceProvider => serviceProvider.GetRequiredService<TimeProvider>().Get
 ### Error Handling
 
 The job executor does not handle exceptions. It is the responsibility of the job configuration to ensure that all necessary error handling is implemented within the job itself.
-
-## Contributing
-
-Contributions are welcome! Please open an issue or a pull request if you have any suggestions or improvements.
