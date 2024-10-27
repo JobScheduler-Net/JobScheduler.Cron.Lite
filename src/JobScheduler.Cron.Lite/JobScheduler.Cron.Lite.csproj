@@ -9,7 +9,7 @@
 
 		<!-- Package informations -->
 		<Summary>Very simple cron job scheduler.</Summary>
-		<Description>Provides small, flexible and easy-to-use solution for scheduling a cron job.</Description>
+		<Description>Provides small, flexible and easy-to-use solution for scheduling a cron job — built with only 20 executable lines of code, making it simple to understand, customize and expand to fit your needs.</Description>
 		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
 		<RepositoryUrl>https://github.com/JobScheduler-Net/JobScheduler.Cron.Lite</RepositoryUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
@@ -27,7 +27,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="..\..\README.md" Pack="true" PackagePath="" Visible="False" />
 		<None Include="..\..\icon.png" Pack="true" PackagePath="" Visible="False" />
 	</ItemGroup>
 
