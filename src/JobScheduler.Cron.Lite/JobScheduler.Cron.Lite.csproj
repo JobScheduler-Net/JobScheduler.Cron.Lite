@@ -11,7 +11,7 @@
 		<Summary>Very simple cron job scheduler.</Summary>
 		<Description>Provides small, flexible and easy-to-use solution for scheduling a cron job — built with only 20 executable lines of code, making it simple to understand, customize and expand to fit your needs.</Description>
 		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-		<RepositoryUrl>https://github.com/JobScheduler-Net/JobScheduler.Cron.Lite</RepositoryUrl>
+		<RepositoryUrl>https://github.com/dotnet-lite/JobScheduler.Cron.Lite</RepositoryUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageIcon>icon.png</PackageIcon>
 
